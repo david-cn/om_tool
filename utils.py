@@ -35,4 +35,20 @@ def track():
 
     info = fd.getvalue()
     log(info)
+def get_server_listinfo():
+    server_listinfo = {}
+    server_list = open(server_list_path).readlines()
+    server_list = server_list[1:]
 
+    print server_list
+    for info in server_list:
+        info = info.replace('\t'," ").strip()
+        if  info == "":
+            continue
+        info = info.split()
+        
+        if info[0] == host_id:
+
+            server_id=info[1]
+            server_listinfo[server_id] = {"svn_dir":info[2]}
+    return server_listinfo
